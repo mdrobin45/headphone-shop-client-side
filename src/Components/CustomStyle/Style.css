@@ -5,3 +5,10 @@
     background-size: cover;
     padding: 14rem 0;
 }
+.worldClassBanner{
+    background: url('../../images/home-base.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10rem 0;
+}

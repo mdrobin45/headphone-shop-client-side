@@ -1,0 +1,44 @@
+[
+    {
+        "title": "White Headphone",
+        "rating": 4.5,
+        "price": 169,
+        "connection": "wireless",
+        "img": "https://i.ibb.co/Z1rffZB/white-headphones-400x400.jpg"
+    },
+    {
+        "title": "Red Headphone",
+        "rating": 4.5,
+        "price": 169,
+        "connection": "wireless",
+        "img": "https://i.ibb.co/Z1rffZB/white-headphones-400x400.jpg"
+    },
+    {
+        "title": "Gold Headphone",
+        "rating": 4.5,
+        "price": 169,
+        "connection": "wireless",
+        "img": "https://i.ibb.co/Z1rffZB/white-headphones-400x400.jpg"
+    },
+    {
+        "title": "Edifier W828NB Noise Canceling",
+        "rating": 4.5,
+        "price": 169,
+        "connection": "wireless",
+        "img": "https://i.ibb.co/Z1rffZB/white-headphones-400x400.jpg"
+    },
+    {
+        "title": "Havit HV-H2002D Gaming Headphone",
+        "rating": 4.5,
+        "price": 169,
+        "connection": "wireless",
+        "img": "https://i.ibb.co/Z1rffZB/white-headphones-400x400.jpg"
+    },
+    {
+        "title": "Havit HV-H2002D Gaming Headphone",
+        "rating": 4.5,
+        "price": 169,
+        "connection": "wireless",
+        "img": "https://i.ibb.co/Z1rffZB/white-headphones-400x400.jpg"
+    }
+]

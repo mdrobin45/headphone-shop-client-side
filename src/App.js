@@ -9,10 +9,11 @@ import Home from './Components/Pages/Home/Home';
 import Shop from './Components/Pages/Shop/Shop';
 import Login from './Components/Pages/User/Login/Login';
 import Register from './Components/Pages/User/Register/Register';
+import APIContextProvider from './ContextAPI/APIContextProvider';
 
 const App = () => {
   return (
-    <div>
+    <APIContextProvider>
       <BrowserRouter>
         <Header/>
         <Routes>
@@ -27,7 +28,7 @@ const App = () => {
         </Routes>
         <Footer/>
       </BrowserRouter>
-    </div>
+    </APIContextProvider>
   );
 };
 
