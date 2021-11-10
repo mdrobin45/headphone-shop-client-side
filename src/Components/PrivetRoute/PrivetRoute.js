@@ -1,15 +1,29 @@
-/* import React from 'react';
-import { Route } from 'react-router';
+import React from 'react';
+import { Redirect, Route } from 'react-router';
+import useAPI from '../../Hooks/useAPI';
 
 const PrivetRoute = ({ children, ...rest }) =>
 {
-    const user = useAuth();
+    const { user,isLoggedIn } = useAPI().auth;
+    if (isLoggedIn) {
+        return children;
+    }
     return (
         <Route
             {...rest}
-            render
+            render={({ location }) => user?.email ? (
+                children
+            ) : (
+                <Redirect
+                to={{
+                    pathname: '/login',
+                    state: {from:location}
+                        }}
+                    />
+                )
+            }
         />
     );
 };
 
-export default PrivetRoute; */
+export default PrivetRoute;

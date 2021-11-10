@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { BrowserRouter,Route,Switch } from 'react-router-dom';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import BuyNow from './Components/Pages/BuyNow/BuyNow';
@@ -9,6 +9,7 @@ import Home from './Components/Pages/Home/Home';
 import Shop from './Components/Pages/Shop/Shop';
 import Login from './Components/Pages/User/Login/Login';
 import Register from './Components/Pages/User/Register/Register';
+import PrivetRoute from './Components/PrivetRoute/PrivetRoute';
 import APIContextProvider from './ContextAPI/APIContextProvider';
 
 const App = () => {
@@ -16,16 +17,32 @@ const App = () => {
     <APIContextProvider>
       <BrowserRouter>
         <Header/>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/home' element={<Home/>}/>
-          <Route path='/shop' element={<Shop/>}/>
-          <Route path='/contact' element={<Contact/>}/>
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/purchase' element={<BuyNow />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
+        <Switch>
+          <Route exact path='/'>
+            <Home/>
+          </Route>
+          <Route exact path='/home'>
+            <Home/>
+          </Route>
+          <Route exact path='/shop'>
+            <Shop/>
+          </Route>
+          <Route exact path='/contact'>
+            <Contact/>
+          </Route>
+          <Route exact path='/dashboard'>
+            <Dashboard/>
+          </Route>
+          <PrivetRoute exact path='/purchase'>
+            <BuyNow/>
+          </PrivetRoute>
+          <Route exact path='/login'>
+            <Login/>
+          </Route>
+          <Route exact path='/register'>
+            <Register/>
+          </Route>
+        </Switch>
         <Footer/>
       </BrowserRouter>
     </APIContextProvider>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react/cjs/react.development";
 import initializeFirebase from "../Firebasse/firebase.init";
 import { getAuth,signOut, createUserWithEmailAndPassword,onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
+import { useLocation } from "react-router";
 
 initializeFirebase();
 const useFirebase = () =>
@@ -10,6 +11,8 @@ const useFirebase = () =>
     const [user, setUser] = useState({});
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+
 
 
     // Form control
@@ -35,21 +38,20 @@ const useFirebase = () =>
     // Register with email && password
     const registerWithPassword = () =>
     {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) =>
+        return createUserWithEmailAndPassword(auth, email, password)
+            /* .then((userCredential) =>
             {
                 setUser(userCredential.user);
-            })
+            }).finally(() =>
+            {
+                setIsLoggedIn(false)
+            }) */
     }
 
     // Login with email && password
     const loginWithPassword = () =>
     {
-        signInWithEmailAndPassword(auth, email, password)
-            .then(userCredential =>
-            {
-                setUser(userCredential.user);
-            })
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
     // Log Out
@@ -58,6 +60,10 @@ const useFirebase = () =>
         signOut(auth).then(() =>
         {
             alert('Log Out successful')
+            setUser({});
+        }).finally(() =>
+        {
+            setIsLoggedIn(false)
         })
     }
     
@@ -70,6 +76,7 @@ const useFirebase = () =>
             if (user) {
                 setUser(user);
             }
+            setIsLoggedIn(false)
         })
     },[auth])
 
@@ -79,6 +86,10 @@ const useFirebase = () =>
         loginWithPassword,
         formControl,
         getEmail,
+        setUser,
+        setIsLoggedIn,
+        isLoggedIn,
+        user,
         getPassword,
         logOut
     }

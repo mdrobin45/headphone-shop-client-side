@@ -19,7 +19,7 @@ function classNames(...classes)
 }
 const Navigation = () =>
 {
-  const { user,logOut } = useAPI().auth;
+  const { user, logOut } = useAPI().auth;
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
