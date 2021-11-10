@@ -1,0 +1,10 @@
+.primary-font{
+    font-family: 'Barlow', sans-serif;
+}
+.homeBanner{
+    background: url('../../images/slide-1.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 14rem 0;
+}
