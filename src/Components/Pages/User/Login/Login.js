@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import useAPI from '../../../../Hooks/useAPI';
 
 const Login = () =>
@@ -28,6 +29,9 @@ const Login = () =>
                 <input onBlur={getEmail} className='p-3 block w-full my-3 rounded bg-gray-100 border text-lg outline-none' placeholder='Email' type="email" />
                 <input onBlur={getPassword} className='p-3 block w-full my-3 rounded bg-gray-100 border text-lg outline-none' placeholder='Password' type="password" />
                 <input onClick={handlePasswordLogin} className='p-3 cursor-pointer block w-full bg-orange text-lg font-primary text-white rounded' value='Login' type="submit" />
+                <div className='pt-4'>
+                    <Link className='text-lg font-primary text-orange' to='/register'>Create an Account</Link>
+                </div>
             </form>
         </div>
     );

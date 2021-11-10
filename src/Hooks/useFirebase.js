@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react/cjs/react.development";
 import initializeFirebase from "../Firebasse/firebase.init";
 import { getAuth,signOut, createUserWithEmailAndPassword,onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
-import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
 
 initializeFirebase();
 const useFirebase = () =>
