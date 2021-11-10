@@ -9,6 +9,9 @@ module.exports = {
     extend: {
       colors: {
         orange:'#FF8A00'
+      },
+      fontFamily: {
+        primary:"'Barlow', sans-serif"
       }
     },
   },
