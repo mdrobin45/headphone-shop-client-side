@@ -8,8 +8,7 @@ import SectionHeader from '../../../SectionHeader/SectionHeader';
 
 const Testimonial = () =>
 {
-    const { testimonials } = useAPI();
-    console.log(testimonials);
+    const { testimonials } = useAPI().fetchData;
     const settings = {
         infinite: true,
         speed: 500,

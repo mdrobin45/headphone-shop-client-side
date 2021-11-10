@@ -19,7 +19,8 @@ const HomeBanner = () => {
                             <a href="/"><FaInstagram className='text-3xl hover:text-orange transition-all text-white my-6'/></a>
                         </div>
                         <div className='pl-10'>
-                            <h2 className='font-bold text-7xl text-white font-primary'>LOUD AND <br /> CLEAR SOUND</h2>
+                            <p className='uppercase tracking-widest font-primary text-lg text-orange'>Get your favorite headphone & enjoy music</p>
+                            <h2 className='font-bold pt-6 text-7xl text-white font-primary'>LOUD AND <br /> CLEAR SOUND</h2>
                             <Button url='/shop' btnText='Discover Now'/>
                         </div>
                     </div>
