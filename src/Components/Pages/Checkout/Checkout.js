@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useParams } from 'react-router';
 import paymentCard from '../../../images/card-logo.png'
 
 const Checkout = () =>
 {
-    const people = [
-        {
-            productName: 'Havit H763D Gaming Headphone Black',
-            price: '$169',
-            quantity: 1,
-            total:'$169'
-        },
-        {
-            productName: 'Havit H763D Gaming Headphone Black',
-            price: '$169',
-            quantity: 1,
-            total:'$169'
-        },
-    ]
     const { register, handleSubmit } = useForm();
     const onSubmit = data => console.log(data);
+    const { id } = useParams();
+    const orders = [];
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [headphone, setHeadphone] = useState({});
+    useEffect(() =>
+    {
+        fetch(`http://localhost:5000/shop/${id}`)
+            .then(res => res.json())
+            .then(data => setHeadphone({title:data?.title,price:data?.price}));
+    }, [id])
+    orders.push(headphone)
+
+    // Update total price
+    useEffect(() =>
+    {
+        orders?.map(order => { if (order?.price) {
+            setTotalPrice(order?.price+totalPrice)
+        }else{setTotalPrice(0)}});
+    }, [headphone]);
+    
+    console.log(totalPrice);
     return (
         <div className='container font-primary my-20 mt-10 flex'>
 
@@ -142,31 +150,31 @@ const Checkout = () =>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
-                                        {people.map((person) => (
-                                        <tr key={person.email}>
+                                        {orders.map((order) => (
+                                        <tr key={order.email}>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
                                                 <div className="ml-4">
-                                                    <div className="text-sm font-medium text-gray-900">{person.productName}</div>
+                                                    <div className="text-sm font-medium text-gray-900">{order?.title}</div>
                                                 </div>
                                             </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{person.price}</div>
+                                                <div className="text-sm text-gray-900">{order.price}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                {person.quantity}
+                                                {order.quantity}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{person.total}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.total}</td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             </td>
                                         </tr>
                                         ))}
-                                        <tr>
+                                            <tr>
                                             <td></td>       
                                             <td></td>       
                                             <td className='px-6 py-4 whitespace-nowrap font-bold text-lg text-gray-800'>Subtotal:</td>       
-                                            <td className='px-6 py-4 whitespace-nowrap text-lg font-bold text-gray-500'>$222</td>       
+                                            <td className='px-6 py-4 whitespace-nowrap text-lg font-bold text-gray-500'>{totalPrice}</td>       
                                         </tr>
                                     </tbody>
                                 </table>

@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 
 const SingleHeadPhone = ({ headPhone }) =>
 {
-    const { title, rating, img, connection, price } = headPhone;
+    const { title, rating, img,_id, connection, price } = headPhone;
     return (
         <div className='shadow border rounded text-center p-3'>
             <img className='m-auto' src={img} alt="Product" />
@@ -18,7 +18,7 @@ const SingleHeadPhone = ({ headPhone }) =>
                 starSpacing='1px'
             />
             <h3 className='font-primary text-blue-800 pt-2 text-xl'>${price}</h3>
-            <Link className='bg-orange py-2 block mt-3.5 rounded text-white text-lg font-primary' to='/checkout'>Buy Now</Link>
+            <Link className='bg-orange py-2 block mt-3.5 rounded text-white text-lg font-primary' to={`checkout/${_id}`}>Buy Now</Link>
         </div>
     );
 };

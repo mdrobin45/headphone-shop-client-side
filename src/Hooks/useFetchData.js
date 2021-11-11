@@ -9,7 +9,7 @@ const useFetchData = () =>
     // Get HeadPhones
     useEffect(() =>
     {
-        fetch('/Shop.JSON')
+        fetch('https://quiet-ocean-51705.herokuapp.com/shop')
             .then(res => res.json())
             .then(data => setHeadphones(data));
     }, [])
