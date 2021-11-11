@@ -1,23 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useParams } from 'react-router';
+import useAPI from '../../../Hooks/useAPI';
 import paymentCard from '../../../images/card-logo.png'
 
 const Checkout = () =>
 {
+    // Initialize state
+    const { user } = useAPI().auth;
     const { register, handleSubmit } = useForm();
     const onSubmit = data => console.log(data);
+    const [userInfo, setUserInfo] = useState({});
     const { id } = useParams();
     const orders = [];
     const [totalPrice, setTotalPrice] = useState(0);
     const [headphone, setHeadphone] = useState({});
+
+
+    // Get user info from database
     useEffect(() =>
     {
-        fetch(`http://localhost:5000/shop/${id}`)
+        fetch(`https://quiet-ocean-51705.herokuapp.com/users/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setUserInfo(data));
+    }, [user])
+
+    // Get single headphone
+    useEffect(() =>
+    {
+        fetch(`https://quiet-ocean-51705.herokuapp.com/shop/${id}`)
             .then(res => res.json())
             .then(data => setHeadphone({title:data?.title,price:data?.price}));
     }, [id])
     orders.push(headphone)
+
 
     // Update total price
     useEffect(() =>
@@ -27,7 +43,7 @@ const Checkout = () =>
         }else{setTotalPrice(0)}});
     }, [headphone]);
     
-    console.log(totalPrice);
+    
     return (
         <div className='container font-primary my-20 mt-10 flex'>
 
@@ -39,11 +55,11 @@ const Checkout = () =>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex'>
-                        <input className='border p-2 rounded mr-2 border-gray-400 w-full my-3' placeholder='First Name' id='firstName' type='text' {...register("firstName", { required: true })} />
-                        <input className='border p-2 rounded ml-2 border-gray-400 w-full my-3' placeholder='Last name' id='lastName' type='text' {...register("lastName", { required: true })} />
+                        <input defaultValue={userInfo?.firstName} disabled className='border p-2 rounded mr-2 border-gray-400 w-full my-3' placeholder='First Name' id='firstName' type='text' {...register("firstName", { required: true })} />
+                        <input disabled defaultValue={userInfo?.lastName} className='border p-2 rounded ml-2 border-gray-400 w-full my-3' placeholder='Last name' id='lastName' type='text' {...register("lastName", { required: true })} />
                     </div>
                     <div>
-                        <input className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Email' id='email' type='email' {...register("email",{ required: true })} />
+                        <input disabled defaultValue={userInfo?.email} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Email' id='email' type='email' {...register("email",{ required: true })} />
                     </div>
                     <div>
                         <input className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Phone' id='phone' type='number' {...register("phone",{ required: true })} />
@@ -55,7 +71,7 @@ const Checkout = () =>
                     <div>
                         <textarea className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Comment' id='comment' {...register("comment",{ required: true })} />
                     </div>
-                    <input type="submit" />
+                    <input className='p-2 bg-orange text-lg text-white rounded border-none w-full my-3' type="submit" />
                 </form>
             </div>
 
@@ -151,7 +167,7 @@ const Checkout = () =>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {orders.map((order) => (
-                                        <tr key={order.email}>
+                                        <tr key={order._id}>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
                                                 <div className="ml-4">
@@ -163,9 +179,9 @@ const Checkout = () =>
                                                 <div className="text-sm text-gray-900">{order.price}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                {order.quantity}
+                                                1
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.total}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.price}</td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             </td>
                                         </tr>
