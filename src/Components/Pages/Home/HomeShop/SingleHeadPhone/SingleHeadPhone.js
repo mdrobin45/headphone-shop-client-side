@@ -18,7 +18,7 @@ const SingleHeadPhone = ({ headPhone }) =>
                 starSpacing='1px'
             />
             <h3 className='font-primary text-blue-800 pt-2 text-xl'>${price}</h3>
-            <Link className='bg-orange py-2 block mt-3.5 rounded text-white text-lg font-primary' to='/purchase'>Buy Now</Link>
+            <Link className='bg-orange py-2 block mt-3.5 rounded text-white text-lg font-primary' to='/checkout'>Buy Now</Link>
         </div>
     );
 };
