@@ -14,7 +14,7 @@ const Register = () =>
     // Register with password
     const handlePasswordRegister = () =>
     {
-        axios.post('http://localhost:5000/users', userInfo)
+        axios.post('https://quiet-ocean-51705.herokuapp.com/users', userInfo)
         .then()
         registerWithPassword()
         .then((userCredential) =>

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useParams } from 'react-router';
@@ -8,13 +9,21 @@ const Checkout = () =>
 {
     // Initialize state
     const { user } = useAPI().auth;
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
     const [userInfo, setUserInfo] = useState({});
     const { id } = useParams();
     const orders = [];
     const [totalPrice, setTotalPrice] = useState(0);
     const [headphone, setHeadphone] = useState({});
+    const { register, handleSubmit,reset } = useForm();
+
+
+    // Post from data to database
+    const onSubmit = data =>
+    {
+        const { _id, ...rest } = data;
+        axios.post('http://localhost:5000/orders', {...rest,...headphone})
+        .then()
+    };
 
 
     // Get user info from database
@@ -22,15 +31,24 @@ const Checkout = () =>
     {
         fetch(`https://quiet-ocean-51705.herokuapp.com/users/${user?.email}`)
             .then(res => res.json())
-            .then(data => setUserInfo(data));
-    }, [user])
+            .then(data =>
+            {
+                const { _id, ...rest } = data;
+                setUserInfo(rest)
+                reset(rest);
+            });
+    }, [reset])
 
     // Get single headphone
     useEffect(() =>
     {
         fetch(`https://quiet-ocean-51705.herokuapp.com/shop/${id}`)
             .then(res => res.json())
-            .then(data => setHeadphone({title:data?.title,price:data?.price}));
+            .then(data =>
+            {
+                const { _id, ...rest } = data;
+                setHeadphone(rest)
+            });
     }, [id])
     orders.push(headphone)
 
@@ -38,7 +56,7 @@ const Checkout = () =>
     // Update total price
     useEffect(() =>
     {
-        orders?.map(order => { if (order?.price) {
+        orders?.map(order => {if (order?.price) {
             setTotalPrice(order?.price+totalPrice)
         }else{setTotalPrice(0)}});
     }, [headphone]);
@@ -55,23 +73,23 @@ const Checkout = () =>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex'>
-                        <input defaultValue={userInfo?.firstName} disabled className='border p-2 rounded mr-2 border-gray-400 w-full my-3' placeholder='First Name' id='firstName' type='text' {...register("firstName", { required: true })} />
-                        <input disabled defaultValue={userInfo?.lastName} className='border p-2 rounded ml-2 border-gray-400 w-full my-3' placeholder='Last name' id='lastName' type='text' {...register("lastName", { required: true })} />
+                        <input {...register("firstName",{ required: true })} readOnly value={userInfo?.firstName} className='border p-2 rounded mr-2 border-gray-400 w-full my-3' placeholder='First Name' id='firstName' type='text' />
+                        <input {...register("lastName",{ required: true })} readOnly value={userInfo?.lastName}  className='border p-2 rounded ml-2 border-gray-400 w-full my-3' placeholder='Last name' id='lastName' type='text'/>
                     </div>
                     <div>
-                        <input disabled defaultValue={userInfo?.email} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Email' id='email' type='email' {...register("email",{ required: true })} />
+                        <input {...register("email",{ required: true })} readOnly value={userInfo?.email} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Email' id='email' type='email' />
                     </div>
                     <div>
-                        <input className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Phone' id='phone' type='number' {...register("phone",{ required: true })} />
+                        <input {...register("phone",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Phone' id='phone' type='number'/>
                     </div>
                     <div>
-                        <input className='border p-2 rounded border-gray-400 w-full my-3' placeholder='City' id='city' type='text' {...register("city", { required: true })} />
-                        <input className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Address' id='address' type='text' {...register("address",{ required: true })} />
+                        <input {...register("city",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='City' id='city' type='text'/>
+                        <input {...register("address",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Address' id='address' type='text' />
                     </div>
                     <div>
-                        <textarea className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Comment' id='comment' {...register("comment",{ required: true })} />
+                        <textarea {...register("comment",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Comment' id='comment' />
                     </div>
-                    <input className='p-2 bg-orange text-lg text-white rounded border-none w-full my-3' type="submit" />
+                    <input type="submit"  className='p-2 bg-orange cursor-pointer text-lg text-white rounded border-none w-full my-3'/>
                 </form>
             </div>
 
