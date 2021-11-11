@@ -21,7 +21,7 @@ const Checkout = () =>
     const onSubmit = data =>
     {
         const { _id, ...rest } = data;
-        axios.post('http://localhost:5000/orders', {...rest,...headphone})
+        axios.post('https://quiet-ocean-51705.herokuapp.com/orders', {...rest,...headphone})
         .then()
     };
 
