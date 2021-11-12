@@ -5,6 +5,7 @@ import Header from './Components/Header/Header';
 import Checkout from './Components/Pages/Checkout/Checkout';
 import Contact from './Components/Pages/Contact/Contact';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
+import ManageOrders from './Components/Pages/Dashboard/ManageOrders/ManageOrders';
 import MyOrders from './Components/Pages/Dashboard/MyOrders/MyOrders';
 import Home from './Components/Pages/Home/Home';
 import Shop from './Components/Pages/Shop/Shop';
@@ -31,10 +32,13 @@ const App = () => {
           <Route exact path='/contact'>
             <Contact/>
           </Route>
-          <Route exact path='/checkout/:id'>
+          <PrivetRoute exact path='/checkout/:id'>
             <Checkout/>
+          </PrivetRoute>
+          <Route exact path='/manage-orders'>
+            <ManageOrders/>
           </Route>
-          <Route exact='my-order'>
+          <Route exact path='/my-order'>
             <MyOrders/>
           </Route>
           <Route exact path='/login'>

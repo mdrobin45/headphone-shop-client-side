@@ -20,8 +20,9 @@ const Checkout = () =>
     // Post from data to database
     const onSubmit = data =>
     {
+        const status = { status: 'Pending' };
         const { _id, ...rest } = data;
-        axios.post('https://quiet-ocean-51705.herokuapp.com/orders', {...rest,...headphone})
+        axios.post('https://quiet-ocean-51705.herokuapp.com/orders', {...rest,...headphone,...status})
         .then()
     };
 
