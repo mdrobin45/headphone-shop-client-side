@@ -6,15 +6,16 @@ const AddProduct = () =>
 {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit=(data)=>{
-        axios.post('https://quiet-ocean-51705.herokuapp.com/reviews', data)
+        axios.post('https://quiet-ocean-51705.herokuapp.com/shop', data)
             .then(res =>
             {
-                if (res.data.insertedId) {
-                   alert('Review added')
+                if (res.status===200) {
+                   alert('Product Added')
                 }
                 reset()
             })
     }
+
     return (
         <div>
             <form className='w-2/4 m-auto font-primary shadow border p-6 my-20' onSubmit={handleSubmit(onSubmit)}>
@@ -24,13 +25,13 @@ const AddProduct = () =>
                     <input {...register("rating",{ required: true })} className='border p-2 rounded ml-2 border-gray-400 w-full my-3' placeholder='Rating' type='number'/>
                 </div>
                 <div>
-                    <input {...register("rating",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Rating' type='number'/>
+                    <input {...register("connection",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Connection Type' type='text'/>
                 </div>
                 <div>
                     <input {...register("image",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Your Image Link' type='text'/>
                 </div>
                 <div>
-                    <textarea {...register("quote",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Your Quote' />
+                    <input {...register("price",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Price' type='number' />
                 </div>
                 <input type="submit"  className='p-2 bg-orange cursor-pointer text-lg text-white rounded border-none w-full my-3'/>
             </form>

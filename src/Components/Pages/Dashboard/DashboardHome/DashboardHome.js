@@ -1,10 +1,9 @@
 import React from 'react';
-import MyOrders from '../MyOrders/MyOrders';
 
 const DashboardHome = () => {
     return (
         <div>
-            <h2>This is dashboard home</h2>
+            <h2 className='text-center text-4xl mt-20'>Welcome to dashboard</h2>
         </div>
     );
 };

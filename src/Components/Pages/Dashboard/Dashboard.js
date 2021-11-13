@@ -12,6 +12,7 @@ import Review from './Review/Review';
 import Payment from './Payment/Payment';
 import useAPI from '../../../Hooks/useAPI';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
+import AddProduct from './AddProduct/AddProduct';
 
 const Dashboard = () =>
 {
@@ -44,6 +45,9 @@ const Dashboard = () =>
                                     <Link to={`${url}/manage-products`}>Manage Products</Link>
                                 </li>
                                 <li className='nav-text'>
+                                    <Link to={`${url}/add-product`}>Add Product</Link>
+                                </li>
+                                <li className='nav-text'>
                                     <Link to={`${url}/make-admin`}>Make an Admin</Link>
                                 </li>
                             </div> : <div>
@@ -69,6 +73,12 @@ const Dashboard = () =>
                     <Switch>
                         <Route exact path={`${path}/myOrder`}>
                             <MyOrders/>
+                        </Route>
+                        <Route exact path={`${path}`}>
+                            <DashboardHome/>
+                        </Route>
+                        <Route exact path={`${path}/add-product`}>
+                            <AddProduct/>
                         </Route>
                         <Route exact path={`${path}/manage-orders`}>
                             <ManageOrders/>

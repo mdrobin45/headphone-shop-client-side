@@ -11,7 +11,7 @@ const SingleHeadPhone = ({ headPhone }) =>
             <h4 className='font-primary uppercase text-gray-400'>{connection}</h4>
             <h2 className='font-primary text-2xl py-3'>{title}</h2>
             <StarRatings
-                rating={rating}
+                rating={parseInt(rating)}
                 starRatedColor="#ff8a00"
                 numberOfStars={5}
                 starDimension='20px'
