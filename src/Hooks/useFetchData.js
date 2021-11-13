@@ -18,7 +18,7 @@ const useFetchData = () =>
     // Testimonial
     useEffect(() =>
     {
-        fetch('/Testimonial.JSON')
+        fetch('https://quiet-ocean-51705.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data => setTestimonials(data));
     }, [])
