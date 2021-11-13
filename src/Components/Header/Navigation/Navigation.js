@@ -10,7 +10,6 @@ import {FaUserCircle} from 'react-icons/fa'
 const navigation = [
   { name: 'Home', to: '/home', current: true },
   { name: 'Shop', to: '/shop', current: false },
-  { name: 'Contact', to: '/contact', current: false }
 ];
 
 function classNames(...classes)

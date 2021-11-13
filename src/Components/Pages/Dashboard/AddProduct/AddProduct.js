@@ -28,7 +28,7 @@ const AddProduct = () =>
                     <input {...register("connection",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Connection Type' type='text'/>
                 </div>
                 <div>
-                    <input {...register("image",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Your Image Link' type='text'/>
+                    <input {...register("img",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Your Image Link' type='text'/>
                 </div>
                 <div>
                     <input {...register("price",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Price' type='number' />
