@@ -7,7 +7,7 @@ import useAPI from '../../../../Hooks/useAPI';
 const Register = () =>
 {
     const history = useHistory();
-    const [userInfo, setUserInfo] = useState({firstName:'',lastName:'',email:''});
+    const [userInfo, setUserInfo] = useState({firstName:'',lastName:'',email:'',role:'user'});
     const location = useLocation();
     const { formControl, getEmail,setUser,setIsLoggedIn, getPassword, registerWithPassword } = useAPI().auth;
     

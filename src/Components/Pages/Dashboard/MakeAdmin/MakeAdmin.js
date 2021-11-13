@@ -5,25 +5,22 @@ import { useForm } from 'react-hook-form';
 const MakeAdmin = () =>
 {
     const { register, handleSubmit, reset } = useForm();
-    const role={role:'admin'}
     const onSubmit=(data)=>{
-        axios.post('https://quiet-ocean-51705.herokuapp.com/users', {...data,...role})
+        axios.put(`https://quiet-ocean-51705.herokuapp.com/users/${data?.email}`)
             .then(res =>
             {
-                if (res.data.insertedId) {
+                if (res.status===200) {
                    alert('Admin user created')
                 }
                 reset()
+                console.log(res);
             })
     }
     return (
         <form className='w-2/4 m-auto font-primary shadow border p-6 my-20' onSubmit={handleSubmit(onSubmit)}>
             <h2 className='text-3xl font-bold text-gray-800 pb-6 text-center'>Make an Admin</h2>
-                <div className='flex'>
-                    <input {...register("name",{ required: true })} className='border p-2 rounded mr-2 border-gray-400 w-full my-3' placeholder='Admin Name' type='text' />
-                </div>
                 <div>
-                    <input {...register("email",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Email' type='number'/>
+                    <input {...register("email",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Email' type='email'/>
                 </div>
                 <input type="submit"  className='p-2 bg-orange cursor-pointer text-lg text-white rounded border-none w-full my-3'/>
             </form>
