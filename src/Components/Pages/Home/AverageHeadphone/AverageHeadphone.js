@@ -13,11 +13,11 @@ const AverageHeadphone = () => {
                 <img style={{marginBottom:'-6rem'}} className='m-auto border-r-8 border-orange border-l-8' src={videoImage} alt="Video" />
             </div>
             <section className='bg-gray-700 container pb-20 pt-32'>
-                <div className='w-2/4'>
+                <div className='md:w-2/4'>
                     <SectionHeader headingColor='#fff' subTitle='EMSO HEADPHONES' mainTitle='Smarter Than Your Average Headphones'/>
                 </div>
 
-                <div className='flex justify-between py-10'>
+                <div className='md:flex justify-between py-10'>
                     <SmartHeadphoneCard
                         img={colImgOne}
                         title='Wear in Total Comfort'

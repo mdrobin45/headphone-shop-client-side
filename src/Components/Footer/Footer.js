@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <div className='footer'>
-            <div className='container flex justify-between'>
-                <div className='w-1/3'>
+            <div className='container md:flex justify-between'>
+                <div className='md:w-1/3'>
                     <h2 className='text-2xl font-primary font-bold text-white'>About Headphones</h2>
                     <p className='text-lg pt-4 font-primary text-white'>Headphones are a pair of small loudspeaker drivers worn on or around the head over a user's ears. They are electroacoustic transducers, which convert an electrical signal to a corresponding sound.</p>
                     <Link className='uppercase text-xl pt-4 block text-white font-primary' to='/shop'>Discover HeadPhones</Link>

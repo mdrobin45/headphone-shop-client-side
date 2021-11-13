@@ -1,7 +1,6 @@
 import React from 'react';
 import { AiOutlineTwitter } from 'react-icons/ai';
 import { FaFacebookSquare,FaInstagram,FaPinterestP} from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import '../../../CustomStyle/Style.css'
 import headphone from '../../../../images/home-headphones-1.jpg'
 import Button from '../../../Button/Button';
@@ -10,8 +9,8 @@ const HomeBanner = () => {
     return (
         <>
             <div className='homeBanner'>
-                <div className='container flex'>
-                    <div className='flex w-2/4 items-center'>
+                <div className='container md:flex'>
+                    <div className='md:flex md:w-2/4 items-center'>
                         <div>
                             <a href="/"><AiOutlineTwitter className='text-3xl hover:text-orange transition-all text-white my-6' /></a>
                             <a href="/"><FaFacebookSquare className='text-3xl hover:text-orange transition-all text-white my-6' /></a>
@@ -20,7 +19,7 @@ const HomeBanner = () => {
                         </div>
                         <div className='pl-10'>
                             <p className='uppercase tracking-widest font-primary text-lg text-orange'>Get your favorite headphone & enjoy music</p>
-                            <h2 className='font-bold pt-6 text-7xl text-white font-primary'>LOUD AND <br /> CLEAR SOUND</h2>
+                            <h2 className='font-primary md:font-bold md:text-7xl pt-6 text-2xl text-white'>LOUD AND <br /> CLEAR SOUND</h2>
                             <Button url='/shop' btnText='Discover Now'/>
                         </div>
                     </div>

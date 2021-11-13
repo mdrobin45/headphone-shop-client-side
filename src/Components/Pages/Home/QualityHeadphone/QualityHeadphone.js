@@ -12,7 +12,7 @@ const QualityHeadphone = () => {
             <div className='m-auto text-center w-1/2'>
                 <SectionHeader mainTitle='More Power Even Less Noise' subTitle='QUALITY HEADPHONES' />
             </div>
-            <div className='flex py-20 justify-between container'>
+            <div className='md:flex py-20 justify-between container'>
                     <QualityHeadphoneCard icon={<BsSoundwave className='text-5xl m-auto'/>} text='Virtual Surround Sound'/>
                     <QualityHeadphoneCard icon={<GiSpeaker className='text-5xl m-auto'/>} text='Sound Position Control'/>
                     <QualityHeadphoneCard icon={<ImHeadphones className='text-3xl m-auto'/>} text='Easy Hands Free Calling'/>

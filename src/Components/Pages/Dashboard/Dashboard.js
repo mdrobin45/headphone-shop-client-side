@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Switch, useRouteMatch,Route } from 'react-router';
-import { SidebarData } from './SidebarData';
 import './Sidebar.css';
 import { IconContext } from 'react-icons';
 import DashboardHome from './DashboardHome/DashboardHome';

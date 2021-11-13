@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React,{useEffect, useState} from 'react';
+import React,{ useState} from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import useAPI from '../../../../Hooks/useAPI';
