@@ -1,9 +1,9 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyBuvrKtLmGm30uo6BPd4PlnR6aQcujIruE",
-    authDomain: "headphone--shop.firebaseapp.com",
-    projectId: "headphone--shop",
-    storageBucket: "headphone--shop.appspot.com",
-    messagingSenderId: "418393004288",
-    appId: "1:418393004288:web:818887ced612a803f07be5"
+    apiKey: process.env.REACT_APP_FIREBASE_API,
+    authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 export default firebaseConfig;
