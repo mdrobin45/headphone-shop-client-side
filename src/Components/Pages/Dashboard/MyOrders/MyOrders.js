@@ -35,7 +35,7 @@ const MyOrders = () => {
           })
     }
     return (
-        <div className='flex'>
+        <div className='flex flex-col'>
             {
                 orders?.map(item => <section
                     className='mt-6 w-full'
