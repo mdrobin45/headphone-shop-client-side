@@ -11,7 +11,7 @@ const Shop = () =>
             <div className='text-center'>
                 <SectionHeader mainTitle='Choose Colors' subTitle='SHOP HEADPHONES'/>
             </div>
-            <div className='grid pt-6 grid-cols-3 gap-4'>
+            <div className='md:grid pt-6 grid-cols-3 gap-4'>
                 {
                    headPhones?.map(headPhone=><SingleHeadPhone key={headPhone._id} headPhone={headPhone}/>)
                 }

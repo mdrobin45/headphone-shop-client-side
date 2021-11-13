@@ -30,7 +30,7 @@ const Dashboard = () =>
     }, [])
     console.log(userInfo);
     return (
-        <div className='flex'>
+        <div className='md:flex'>
             <IconContext.Provider value={{ color: '#fff' }}>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items'>

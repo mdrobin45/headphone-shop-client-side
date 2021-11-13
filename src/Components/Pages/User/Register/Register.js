@@ -56,7 +56,7 @@ const Register = () =>
     
     return (
         <div>
-            <form onSubmit={formControl} className='w-2/4 text-center shadow border p-6 rounded m-auto my-20'>
+            <form onSubmit={formControl} className='md:w-2/4 text-center shadow border p-6 rounded m-auto my-20'>
                 <h2 className='text-3xl font-primary text-orange font-bold text-center'>Please Register</h2>
                 <div className='flex'>
                     <input onChange={firstNameHandle} placeholder='First Name' className='p-3 mr-2 block w-full my-3 rounded bg-gray-100 border text-lg outline-none' type="text" />
