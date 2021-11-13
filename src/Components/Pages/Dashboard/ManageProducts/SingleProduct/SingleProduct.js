@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React from 'react';
+import axios from 'axios';
 import StarRatings from 'react-star-ratings';
 import Swal from 'sweetalert2'
 
@@ -32,7 +32,7 @@ const SingleProduct = ({headPhone}) =>
             <h4 className='font-primary uppercase text-gray-400'>{connection}</h4>
             <h2 className='font-primary text-2xl py-3'>{title}</h2>
             <StarRatings
-                rating={rating}
+                rating={parseInt(rating)}
                 starRatedColor="#ff8a00"
                 numberOfStars={5}
                 starDimension='20px'
