@@ -9,7 +9,7 @@ const Register = () =>
     const history = useHistory();
     const [userInfo, setUserInfo] = useState({firstName:'',lastName:'',email:'',role:'user'});
     const location = useLocation();
-    const { formControl, getEmail,setUser,setIsLoggedIn, getPassword, registerWithPassword } = useAPI().auth;
+    const { formControl,error,setError, getEmail,setUser,setIsLoggedIn, getPassword, registerWithPassword } = useAPI().auth;
     
     // Register with password
     const handlePasswordRegister = () =>
@@ -21,10 +21,13 @@ const Register = () =>
             {
                 setUser(userCredential.user);
                 history.push(location.state?.from || '/')
-            }).finally(() =>
-            {
-                setIsLoggedIn(false)
-            })
+        }).catch(error =>
+        {
+             setError(error.message)   
+        }).finally(() =>
+        {
+            setIsLoggedIn(false)
+        })
     }
 
     // First name handle
@@ -57,6 +60,7 @@ const Register = () =>
     return (
         <div>
             <form onSubmit={formControl} className='md:w-2/4 text-center shadow border p-6 rounded m-auto my-20'>
+                <strong className='bg-red-100 block font-primary py-2 rounded text-center text-red-600'>{error}</strong>
                 <h2 className='text-3xl font-primary text-orange font-bold text-center'>Please Register</h2>
                 <div className='flex'>
                     <input onChange={firstNameHandle} placeholder='First Name' className='p-3 mr-2 block w-full my-3 rounded bg-gray-100 border text-lg outline-none' type="text" />

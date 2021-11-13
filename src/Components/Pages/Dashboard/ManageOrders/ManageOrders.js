@@ -56,7 +56,7 @@ const ManageOrders = () =>
             });
     }
     return (
-        <div>
+        <div className='font-primary'>
             {
                 orders?.map(item => <section
                     className='mt-6'
@@ -70,6 +70,7 @@ const ManageOrders = () =>
                                 <img className='w-full' src={item?.img} alt="Thumbnail" />
                             </div>
                             <div className='pl-6'>
+                                <h2 className='font-bold text-3xl text-yellow-500'>{item?.title}</h2>
                                 <h2 className='font-bold text-3xl text-yellow-500'>${item?.price}</h2>
                                 <ReactStars
                                     count={5}
@@ -82,7 +83,6 @@ const ManageOrders = () =>
                                     halfIcon={<i className="fa fa-star-half-alt"></i>}
                                     fullIcon={<i className="fa fa-star"></i>}
                                 />
-                                <p className='text-lg'>{item?.description}</p>
                             </div>
                         </div>
                         <div className='md:px-0 md:w-1/4 px-4'>

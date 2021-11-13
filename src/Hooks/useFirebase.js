@@ -11,6 +11,7 @@ const useFirebase = () =>
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [error, setError] = useState('');
 
 
 
@@ -38,13 +39,6 @@ const useFirebase = () =>
     const registerWithPassword = () =>
     {
         return createUserWithEmailAndPassword(auth, email, password)
-            /* .then((userCredential) =>
-            {
-                setUser(userCredential.user);
-            }).finally(() =>
-            {
-                setIsLoggedIn(false)
-            }) */
     }
 
     // Login with email && password
@@ -87,6 +81,8 @@ const useFirebase = () =>
         getEmail,
         setUser,
         setIsLoggedIn,
+        error,
+        setError,
         isLoggedIn,
         user,
         getPassword,
