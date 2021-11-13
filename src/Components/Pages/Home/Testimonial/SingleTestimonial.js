@@ -3,7 +3,7 @@ import StarRatings from 'react-star-ratings';
 
 const SingleTestimonial = ({ item }) =>
 {
-    const { title, rating, quote, author, image } = item;
+    const { title, rating, quote, authorName, image } = item;
 
     return (
         <div className='text-center py-6 px-20 bg-white shadow rounded mx-6 border'>
@@ -19,7 +19,7 @@ const SingleTestimonial = ({ item }) =>
             <p className='text-lg pt-6 pb-6 font-primary text-gray-500'>{quote}</p>
             <hr className='py-3' />
             <img className='m-auto w-10' src={image} alt="author" />
-            <p className='text-orange pt-4 font-bold font-primary text-lg'>{author}</p>
+            <p className='text-orange pt-4 font-bold font-primary text-lg'>{authorName}</p>
         </div>
     );
 };
