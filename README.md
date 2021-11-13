@@ -1,70 +1,18 @@
-# Getting Started with Create React App
+# Welcome to your headphone store
+## Choice your best headPhone
+ headphones can provide quite a bit of passive noise isolation, but when you want to really shut the world out, you can activate active noise-canceling technology with the flip of a switch. This filters out ambient sound so you can truly be alone with your music, even in public. Even better, the W828NB's ANC technology works when wired. Use the included AUX cable when battery life is low and still enjoy noise cancelation. it can be used both wired and wirelessly. When used wirelessly, the W828NB headphones receive music streamed from your mobile devices via Bluetooth 5.0 technology. On a full charge, you can enjoy literal all-day audio with up to 25 hours of playback with ANC turned on. Turn noise cancellation off and you can go days without recharging, with up to 80 hours of battery life. When you're not listening to music, the collapsible design lets you break down the over-ear headphones for easy storage. It has a Comfortable Design. To complement such long battery life, Edifier worked to make sure the W828NB headphones would be comfortable during extended use. They feature a lightweight design, a cushioned headband, and thick cushioned earcups.Edifier W828NB Noise-Canceling Wireless Headphones (Black) offers 1 year of Warrenty.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live: https://headphone--shop.web.app/
 
-## Available Scripts
+## What CSS framework we are using
+- [Tailwind CSS](https://tailwindcss.com/)
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Our list of package we are using with this project
+-[Head Less UI](https://headlessui.dev/)
+-[Hero Icons](https://heroicons.com/)
+-[React Icons](https://react-icons.github.io/react-icons/)
+-[React Router version 5](https://v5.reactrouter.com/web/guides/quick-start)
+-[React Pro Sidebar](https://www.npmjs.com/package/react-pro-sidebar)
+-[React Slick Slider](https://react-slick.neostack.com/)
+-[React Star Ratings](https://www.npmjs.com/package/react-star-ratings)
+-[Sweet Alert](https://sweetalert2.github.io/)
