@@ -8,7 +8,6 @@ import {FaUserCircle} from 'react-icons/fa'
 
 
 const navigation = [
-  { name: 'Dashboard', to: '/dashboard', current: false },
   { name: 'Home', to: '/home', current: true },
   { name: 'Shop', to: '/shop', current: false },
   { name: 'Contact', to: '/contact', current: false }
@@ -98,11 +97,13 @@ const Navigation = () =>
                           <h2 className='py-3 text-lg border-b px-3'>{user?.name?user?.name:'Name not available'}</h2>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
+                      {
+                        user?.email?<Menu.Item>
                         {({ active }) => (
-                          <h2 className='py-3 text-lg px-3'>{user?.email}</h2>
+                          <Link className='py-3 text-lg border-b px-3' to='/dashboard'>Dashboard</Link>
                         )}
-                      </Menu.Item>
+                      </Menu.Item>:''
+                      }
                     </Menu.Items>
                   </Transition>
                 </Menu>

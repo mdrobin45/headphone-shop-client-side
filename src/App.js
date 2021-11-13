@@ -37,21 +37,9 @@ const App = () => {
           <Route path='/dashboard'>
             <Dashboard/>
           </Route>
-          <Route exact path='/review'>
-            <Review/>
-          </Route>
           <PrivetRoute exact path='/checkout/:id'>
             <Checkout/>
           </PrivetRoute>
-          <Route exact path='/manage-orders'>
-            <ManageOrders/>
-          </Route>
-          <Route exact path='/manage-product'>
-            <ManageProducts/>
-          </Route>
-          <Route exact path='/my-order'>
-            <MyOrders/>
-          </Route>
           <Route exact path='/login'>
             <Login/>
           </Route>

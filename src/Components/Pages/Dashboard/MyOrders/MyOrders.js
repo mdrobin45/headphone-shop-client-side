@@ -35,10 +35,10 @@ const MyOrders = () => {
           })
     }
     return (
-        <div>
+        <div className='flex'>
             {
                 orders?.map(item => <section
-                    className='mt-20'
+                    className='mt-6 w-full'
                     key={item._id}>
                         {
                         item?.status==='Pending'?<div className='text-center rounded-t-lg bg-yellow-500 text-white text-lg py-2 w-10/12 m-auto'><h2>Pending</h2></div>:<div className='text-center rounded-t-lg bg-green-600 text-white text-lg py-2 w-10/12 m-auto'><h2>Approved</h2></div>
