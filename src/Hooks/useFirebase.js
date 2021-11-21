@@ -157,7 +157,13 @@ const useFirebase = () =>
     {
         signOut(auth).then(() =>
         {
-            alert('Log Out successful')
+            Swal.fire({
+                position: 'center center',
+                icon: 'success',
+                title: 'Log Out Successful',
+                showConfirmButton: false,
+                timer: 1500
+              })
             setUser({});
         }).finally(() =>
         {

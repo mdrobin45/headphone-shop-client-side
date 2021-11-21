@@ -1,4 +1,5 @@
 import React from 'react';
+import Loader from 'react-loader-spinner';
 import { BrowserRouter,Route,Switch } from 'react-router-dom';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
@@ -11,11 +12,23 @@ import Login from './Components/Pages/User/Login/Login';
 import Register from './Components/Pages/User/Register/Register';
 import PrivetRoute from './Components/PrivetRoute/PrivetRoute';
 import APIContextProvider from './ContextAPI/APIContextProvider';
+import useFetchData from './Hooks/useFetchData';
 
-const App = () => {
+const App = () =>
+{
+  const { loading } = useFetchData();
+  console.log(loading);
   return (
     <APIContextProvider>
-      <BrowserRouter>
+      {
+        loading ? <div style={{left:'45%'}} className='absolute text-center top-1/3'>
+          <Loader
+            type="Puff"
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
+        </div>:<BrowserRouter>
         <Header/>
         <Switch>
           <Route exact path='/'>
@@ -45,6 +58,7 @@ const App = () => {
         </Switch>
         <Footer/>
       </BrowserRouter>
+      }
     </APIContextProvider>
   );
 };

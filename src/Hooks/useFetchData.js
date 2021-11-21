@@ -5,6 +5,7 @@ const useFetchData = () =>
     // Initialize state
     const [headPhones, setHeadphones] = useState([]);
     const [testimonials, setTestimonials] = useState([]);
+    const [loading, setLoading] = useState(true);
 
 
     // Get HeadPhones
@@ -12,7 +13,12 @@ const useFetchData = () =>
     {
         fetch('https://headphone-shop-r.herokuapp.com/shop')
             .then(res => res.json())
-            .then(data => setHeadphones(data));
+            .then(data =>
+            {
+                setHeadphones(data)
+                setLoading(false);
+            });
+            setLoading(true);
     }, []);
 
 
@@ -21,14 +27,20 @@ const useFetchData = () =>
     {
         fetch('https://headphone-shop-r.herokuapp.com/reviews')
             .then(res => res.json())
-            .then(data => setTestimonials(data));
+            .then(data =>
+            {
+                setTestimonials(data)
+                setLoading(false);
+            });
+            setLoading(true);
     }, []);
 
 
     // Return Data
     return {
         testimonials,
-        headPhones
+        headPhones,
+        loading
     };
 };
 

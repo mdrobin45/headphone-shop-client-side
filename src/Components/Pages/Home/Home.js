@@ -6,7 +6,8 @@ import QualityHeadphone from './QualityHeadphone/QualityHeadphone';
 import Testimonial from './Testimonial/Testimonial';
 import WorldclassBanner from './WorldclassBanner/WorldclassBanner';
 
-const Home = () => {
+const Home = () =>
+{
     return (
         <div>
             <HomeBanner />
