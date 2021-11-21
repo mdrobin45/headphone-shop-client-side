@@ -24,7 +24,7 @@ const Navigation = () =>
   // Get Single User information
   useEffect(() =>
   {
-    fetch(`http://localhost:5000/users/${user?.email}`)
+    fetch(`https://headphone-shop-r.herokuapp.com/users/${user?.email}`)
       .then(res => res.json())
       .then(data => setSingleUserInfo(data));
   }, [user?.email])

@@ -55,7 +55,7 @@ const useFirebase = () =>
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) =>
         {
-            axios.post('http://localhost:5000/users', userInfo)
+            axios.post('https://headphone-shop-r.herokuapp.com/users', userInfo)
             .then()
             setUser(userCredential.user);
             Swal.fire({
