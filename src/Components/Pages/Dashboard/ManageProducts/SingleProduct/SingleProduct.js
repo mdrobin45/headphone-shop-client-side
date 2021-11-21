@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
-const SingleProduct = ({headPhone}) =>
+const SingleProduct = ({ headPhone }) =>
 {
     const { title, rating, img, _id, connection, price } = headPhone;
 
@@ -14,18 +14,19 @@ const SingleProduct = ({headPhone}) =>
             title: 'Do you want to delete?',
             showCancelButton: true,
             confirmButtonText: 'Delete',
-            }).then((result) => {
+        }).then((result) =>
+        {
             /* Read more about isConfirmed, isDenied below */
-              if (result.isConfirmed) {
-                axios.delete(`https://quiet-ocean-51705.herokuapp.com/shop/${id}`)
-                .then(res =>
-                {
-                    
-                })
-              Swal.fire('Product Deleted', '', 'success')
+            if (result.isConfirmed) {
+                axios.delete(`https://headphone-shop-r.herokuapp.com//shop/${id}`)
+                    .then(res =>
+                    {
+
+                    });
+                Swal.fire('Product Deleted', '', 'success');
             }
-        })
-    }
+        });
+    };
     return (
         <div className='shadow border rounded text-center p-3'>
             <img className='m-auto' src={img} alt="Product" />
@@ -39,7 +40,7 @@ const SingleProduct = ({headPhone}) =>
                 starSpacing='1px'
             />
             <h3 className='font-primary text-blue-800 pt-2 text-xl'>${price}</h3>
-            <button onClick={()=>deleteProduct(_id)} className='py-2 bg-red-500 w-full block mt-3.5 rounded text-white text-lg font-primary'>Delete</button>
+            <button onClick={() => deleteProduct(_id)} className='py-2 bg-red-500 w-full block mt-3.5 rounded text-white text-lg font-primary'>Delete</button>
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import initializeFirebase from "../Firebasse/firebase.init";
 import { getAuth,signOut, createUserWithEmailAndPassword,onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 initializeFirebase();
 const useFirebase = () =>
@@ -11,7 +13,7 @@ const useFirebase = () =>
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [error, setError] = useState('');
+    const [userInfo, setUserInfo] = useState({ name: '', email: '', role: 'user' });
 
 
 
@@ -20,11 +22,23 @@ const useFirebase = () =>
     {
         e.preventDefault();
     }
+    // First name handle
+    const name = (e) =>
+    {
+        const inputValue = e.target.value;
+        const setFName = { ...userInfo };
+        setFName.name = inputValue;
+        setUserInfo(setFName);
+    };
+
 
     // Get email
     const getEmail = (e) =>
     {
         const inputValue = e.target.value;
+        const setUserEmail = { ...userInfo };
+        setUserEmail.email = inputValue;
+        setUserInfo(setUserEmail);
         setEmail(inputValue);
     }
 
@@ -36,15 +50,106 @@ const useFirebase = () =>
     }
 
     // Register with email && password
-    const registerWithPassword = () =>
+    const registerWithPassword = (history,location) =>
     {
-        return createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) =>
+        {
+            axios.post('http://localhost:5000/users', userInfo)
+            .then()
+            setUser(userCredential.user);
+            Swal.fire({
+                position: 'center center',
+                icon: 'success',
+                title: 'Registration Successful',
+                showConfirmButton: false,
+                timer: 1500
+              })
+                history.push(location.state?.from || '/');
+            }).catch(error =>
+            {
+                const errorCode = error.code;
+                switch (errorCode) {
+                    case 'auth/email-already-in-use':
+                        Swal.fire({
+                            position: 'center center',
+                            icon: 'warning',
+                            title: 'Account already exist',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        break;
+                    case 'auth/weak-password':
+                        Swal.fire({
+                            position: 'center center',
+                            icon: 'warning',
+                            title: 'Weak Password',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        break;
+                    case 'auth/invalid-email':
+                        Swal.fire({
+                            position: 'center center',
+                            icon: 'warning',
+                            title: 'Invalid Email',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        break;
+                    default:
+
+                }
+            }).finally(() =>
+            {
+                setIsLoggedIn(false);
+            });
     }
 
     // Login with email && password
-    const loginWithPassword = () =>
+    const loginWithPassword = (history,location) =>
     {
-        return signInWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, email, password)
+        .then(userCredential =>
+            {
+                setUser(userCredential.user);
+                Swal.fire({
+                    position: 'center center',
+                    icon: 'success',
+                    title: 'Login Successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                history.push(location.state?.from || '/')
+            }).catch(error =>
+            {
+                const errorCode = error.code;
+                switch (errorCode) {
+                    case 'auth/wrong-password':
+                        Swal.fire({
+                            position: 'center center',
+                            icon: 'warning',
+                            title: 'Incorrect email or password',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        break;
+                    case 'auth/user-not-found':
+                        Swal.fire({
+                            position: 'center center',
+                            icon: 'warning',
+                            title: 'Incorrect email or password',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        break;
+                    default:
+
+                }
+            }).finally(() =>
+            {
+                setIsLoggedIn(false)
+            })
     }
 
     // Log Out
@@ -78,11 +183,10 @@ const useFirebase = () =>
         registerWithPassword,
         loginWithPassword,
         formControl,
+        name,
         getEmail,
         setUser,
         setIsLoggedIn,
-        error,
-        setError,
         isLoggedIn,
         user,
         getPassword,

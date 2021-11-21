@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useParams } from 'react-router';
 import useAPI from '../../../Hooks/useAPI';
-import paymentCard from '../../../images/card-logo.png'
+import paymentCard from '../../../images/card-logo.png';
 
 const Checkout = () =>
 {
@@ -14,7 +14,7 @@ const Checkout = () =>
     const orders = [];
     const [totalPrice, setTotalPrice] = useState(0);
     const [headphone, setHeadphone] = useState({});
-    const { register, handleSubmit,reset } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
 
     // Post from data to database
@@ -22,7 +22,7 @@ const Checkout = () =>
     {
         const status = { status: 'Pending' };
         const { _id, ...rest } = data;
-        axios.post('https://quiet-ocean-51705.herokuapp.com/orders', {...rest,...headphone,...status})
+        axios.post('https://headphone-shop-r.herokuapp.com//orders', { ...rest, ...headphone, ...status })
             .then(res =>
             {
                 if (res.data.insertedId) {
@@ -30,46 +30,49 @@ const Checkout = () =>
                     reset();
                 }
                 console.log(res);
-            })
+            });
     };
 
 
     // Get user info from database
     useEffect(() =>
     {
-        fetch(`https://quiet-ocean-51705.herokuapp.com/users/${user?.email}`)
+        fetch(`https://headphone-shop-r.herokuapp.com//users/${user?.email}`)
             .then(res => res.json())
             .then(data =>
             {
                 const { _id, ...rest } = data;
-                setUserInfo(rest)
+                setUserInfo(rest);
                 reset(rest);
             });
-    }, [reset])
+    }, [reset]);
 
     // Get single headphone
     useEffect(() =>
     {
-        fetch(`https://quiet-ocean-51705.herokuapp.com/shop/${id}`)
+        fetch(`https://headphone-shop-r.herokuapp.com//shop/${id}`)
             .then(res => res.json())
             .then(data =>
             {
                 const { _id, ...rest } = data;
-                setHeadphone(rest)
+                setHeadphone(rest);
             });
-    }, [id])
-    orders.push(headphone)
+    }, [id]);
+    orders.push(headphone);
 
 
     // Update total price
     useEffect(() =>
     {
-        orders?.map(order => {if (order?.price) {
-            setTotalPrice(order?.price+totalPrice)
-        }else{setTotalPrice(0)}});
+        orders?.map(order =>
+        {
+            if (order?.price) {
+                setTotalPrice(order?.price + totalPrice);
+            } else { setTotalPrice(0); }
+        });
     }, [headphone]);
-    
-    
+
+
     return (
         <div className='container font-primary my-20 mt-10 flex'>
 
@@ -81,23 +84,23 @@ const Checkout = () =>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex'>
-                        <input {...register("firstName",{ required: true })} readOnly value={userInfo?.firstName} className='border p-2 rounded mr-2 border-gray-400 w-full my-3' placeholder='First Name' id='firstName' type='text' />
-                        <input {...register("lastName",{ required: true })} readOnly value={userInfo?.lastName}  className='border p-2 rounded ml-2 border-gray-400 w-full my-3' placeholder='Last name' id='lastName' type='text'/>
+                        <input {...register("firstName", { required: true })} readOnly value={userInfo?.firstName} className='border p-2 rounded mr-2 border-gray-400 w-full my-3' placeholder='First Name' id='firstName' type='text' />
+                        <input {...register("lastName", { required: true })} readOnly value={userInfo?.lastName} className='border p-2 rounded ml-2 border-gray-400 w-full my-3' placeholder='Last name' id='lastName' type='text' />
                     </div>
                     <div>
-                        <input {...register("email",{ required: true })} readOnly value={userInfo?.email} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Email' id='email' type='email' />
+                        <input {...register("email", { required: true })} readOnly value={userInfo?.email} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Email' id='email' type='email' />
                     </div>
                     <div>
-                        <input {...register("phone",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Phone' id='phone' type='number'/>
+                        <input {...register("phone", { required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Phone' id='phone' type='number' />
                     </div>
                     <div>
-                        <input {...register("city",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='City' id='city' type='text'/>
-                        <input {...register("address",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Address' id='address' type='text' />
+                        <input {...register("city", { required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='City' id='city' type='text' />
+                        <input {...register("address", { required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Address' id='address' type='text' />
                     </div>
                     <div>
-                        <textarea {...register("comment",{ required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Comment' id='comment' />
+                        <textarea {...register("comment", { required: true })} className='border p-2 rounded border-gray-400 w-full my-3' placeholder='Comment' id='comment' />
                     </div>
-                    <input type="submit"  className='p-2 bg-orange cursor-pointer text-lg text-white rounded border-none w-full my-3'/>
+                    <input type="submit" className='p-2 bg-orange cursor-pointer text-lg text-white rounded border-none w-full my-3' />
                 </form>
             </div>
 
@@ -158,71 +161,71 @@ const Checkout = () =>
                     <div className="flex flex-col">
                         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-gray-50">
-                                        <tr>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Product Name
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Unit Price
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Quantity
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Total
-                                        </th>
-                                        <th scope="col" className="relative px-6 py-3">
-                                            <span className="sr-only">Edit</span>
-                                        </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        {orders.map((order) => (
-                                        <tr key={order._id}>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="flex items-center">
-                                                <div className="ml-4">
-                                                    <div className="text-sm font-medium text-gray-900">{order?.title}</div>
-                                                </div>
-                                            </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{order.price}</div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                1
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.price}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            </td>
-                                        </tr>
-                                        ))}
+                                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                    <table className="min-w-full divide-y divide-gray-200">
+                                        <thead className="bg-gray-50">
                                             <tr>
-                                            <td></td>       
-                                            <td></td>       
-                                            <td className='px-6 py-4 whitespace-nowrap font-bold text-lg text-gray-800'>Subtotal:</td>       
-                                            <td className='px-6 py-4 whitespace-nowrap text-lg font-bold text-gray-500'>{totalPrice}</td>       
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                <th
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    Product Name
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    Unit Price
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    Quantity
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    Total
+                                                </th>
+                                                <th scope="col" className="relative px-6 py-3">
+                                                    <span className="sr-only">Edit</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="bg-white divide-y divide-gray-200">
+                                            {orders.map((order) => (
+                                                <tr key={order._id}>
+                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                        <div className="flex items-center">
+                                                            <div className="ml-4">
+                                                                <div className="text-sm font-medium text-gray-900">{order?.title}</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                        <div className="text-sm text-gray-900">{order.price}</div>
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                        1
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.price}</td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td className='px-6 py-4 whitespace-nowrap font-bold text-lg text-gray-800'>Subtotal:</td>
+                                                <td className='px-6 py-4 whitespace-nowrap text-lg font-bold text-gray-500'>{totalPrice}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>

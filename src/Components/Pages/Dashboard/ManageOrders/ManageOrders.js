@@ -1,48 +1,51 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Swal from 'sweetalert2'
-import ReactStars from 'react-stars'
+import Swal from 'sweetalert2';
+import ReactStars from 'react-stars';
 
 const ManageOrders = () =>
 {
     const [orders, setOrders] = useState();
-    const [updateOrder,setUpdateOrder]=useState(0);
+    const [updateOrder, setUpdateOrder] = useState(0);
     useEffect(() =>
     {
-        fetch('https://quiet-ocean-51705.herokuapp.com/orders')
+        fetch('https://headphone-shop-r.herokuapp.com//orders')
             .then(res => res.json())
             .then(data => setOrders(data));
-    }, [updateOrder])
+    }, [updateOrder]);
 
 
-    
+
     // Delete order
-    const deleteOrder=(id) =>
+    const deleteOrder = (id) =>
     {
         Swal.fire({
             title: 'Do you want to delete?',
             showCancelButton: true,
             confirmButtonText: 'Delete',
-            }).then((result) => {
+        }).then((result) =>
+        {
             /* Read more about isConfirmed, isDenied below */
-              if (result.isConfirmed) {
-                axios.delete(`https://quiet-ocean-51705.herokuapp.com/orders/${id}`)
-                .then(res=>{
-                    if (res.status === 200) {
-                        setUpdateOrder(updateOrder + 1);
-                    }
-                });
-              Swal.fire('Order Deleted', '', 'success')
+            if (result.isConfirmed) {
+                axios.delete(`https://headphone-shop-r.herokuapp.com//orders/${id}`)
+                    .then(res =>
+                    {
+                        if (res.status === 200) {
+                            setUpdateOrder(updateOrder + 1);
+                        }
+                    });
+                Swal.fire('Order Deleted', '', 'success');
             }
-            })
-    }
+        });
+    };
 
 
     // Approve order
     const approveOrder = (id) =>
     {
-        axios.put(`https://quiet-ocean-51705.herokuapp.com/orders/${id}`)
-            .then(res=>{
+        axios.put(`https://headphone-shop-r.herokuapp.com//orders/${id}`)
+            .then(res =>
+            {
                 if (res.status === 200) {
                     Swal.fire({
                         position: 'center center',
@@ -50,11 +53,11 @@ const ManageOrders = () =>
                         title: 'Order Approved',
                         showConfirmButton: false,
                         timer: 1500
-                      })
+                    });
                     setUpdateOrder(updateOrder + 1);
                 }
             });
-    }
+    };
     return (
         <div className='font-primary'>
             {
@@ -62,7 +65,7 @@ const ManageOrders = () =>
                     className='mt-6'
                     key={item._id}>
                     {
-                        item?.status==='Pending'?<div className='text-center rounded-t-lg bg-yellow-500 text-white text-lg py-2 w-10/12 m-auto'><h2>Pending</h2></div>:<div className='text-center rounded-t-lg bg-green-600 text-white text-lg py-2 w-10/12 m-auto'><h2>Approved</h2></div>
+                        item?.status === 'Pending' ? <div className='text-center rounded-t-lg bg-yellow-500 text-white text-lg py-2 w-10/12 m-auto'><h2>Pending</h2></div> : <div className='text-center rounded-t-lg bg-green-600 text-white text-lg py-2 w-10/12 m-auto'><h2>Approved</h2></div>
                     }
                     <div className='border rounded-b-lg md:flex md:pr-6 m-auto mb-6 shadow w-10/12'>
                         <div className='md:pr-6 md:w-3/4'>
@@ -92,9 +95,9 @@ const ManageOrders = () =>
                             <p className='text-lg'>Email: {item?.email}</p>
                             <p className='text-lg'>Phone: {item?.phone}</p>
                             <p className='text-lg'>Address: {item?.address}</p>
-                            <button onClick={()=>deleteOrder(item?._id)} className='bg-red-500 block w-full my-3 px-10 py-3 rounded text-white'>Delete</button>
+                            <button onClick={() => deleteOrder(item?._id)} className='bg-red-500 block w-full my-3 px-10 py-3 rounded text-white'>Delete</button>
                             {
-                                item?.status === 'Approved'?<button disabled onClick={() => approveOrder(item?._id)} className='bg-green-600 cursor-not-allowed px-10 block w-full my-3 py-3 rounded text-white'>Already Approved</button>:<button onClick={() => approveOrder(item?._id)} className='bg-green-600 px-10 block w-full my-3 py-3 rounded text-white'>Approve</button>
+                                item?.status === 'Approved' ? <button disabled onClick={() => approveOrder(item?._id)} className='bg-green-600 cursor-not-allowed px-10 block w-full my-3 py-3 rounded text-white'>Already Approved</button> : <button onClick={() => approveOrder(item?._id)} className='bg-green-600 px-10 block w-full my-3 py-3 rounded text-white'>Approve</button>
                             }
                         </div>
                     </div>

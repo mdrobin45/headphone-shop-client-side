@@ -19,6 +19,7 @@ const SingleHeadPhone = ({ headPhone }) =>
             />
             <h3 className='font-primary text-blue-800 pt-2 text-xl'>${price}</h3>
             <Link className='bg-orange py-2 block mt-3.5 rounded text-white text-lg font-primary' to={`checkout/${_id}`}>Buy Now</Link>
+            <button className='bg-gray-700 py-2 w-full mt-3.5 rounded text-white text-lg font-primary'>Add To Cart</button>
         </div>
     );
 };

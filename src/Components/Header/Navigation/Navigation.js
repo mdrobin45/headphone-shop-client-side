@@ -1,10 +1,9 @@
-import React,{Fragment} from 'react';
+import React,{Fragment, useEffect, useState} from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link, NavLink } from 'react-router-dom';
 import useAPI from '../../../Hooks/useAPI';
 import {FaUserCircle} from 'react-icons/fa'
-
 
 
 const navigation = [
@@ -19,6 +18,18 @@ function classNames(...classes)
 const Navigation = () =>
 {
   const { user, logOut } = useAPI().auth;
+  const [singleUserInfo, setSingleUserInfo] = useState({});
+
+
+  // Get Single User information
+  useEffect(() =>
+  {
+    fetch(`http://localhost:5000/users/${user?.email}`)
+      .then(res => res.json())
+      .then(data => setSingleUserInfo(data));
+  }, [user?.email])
+
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -84,7 +95,7 @@ const Navigation = () =>
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <h2 className='py-3 text-lg border-b px-3'>{user?.name?user?.name:'Name not available'}</h2>
+                          <h2 className='py-3 text-lg border-b px-3'>{singleUserInfo?.email?singleUserInfo?.name:'Name not available'}</h2>
                         )}
                       </Menu.Item>
                       {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Switch, useRouteMatch,Route } from 'react-router';
+import { Switch, useRouteMatch, Route } from 'react-router';
 import './Sidebar.css';
 import { IconContext } from 'react-icons';
 import DashboardHome from './DashboardHome/DashboardHome';
@@ -24,10 +24,10 @@ const Dashboard = () =>
     // Get user info from database
     useEffect(() =>
     {
-        fetch(`https://quiet-ocean-51705.herokuapp.com/users/${user?.email}`)
+        fetch(`https://headphone-shop-r.herokuapp.com//users/${user?.email}`)
             .then(res => res.json())
-            .then(data =>setUserInfo(data));
-    }, [])
+            .then(data => setUserInfo(data));
+    }, []);
     console.log(userInfo);
     return (
         <div className='md:flex'>
@@ -36,7 +36,7 @@ const Dashboard = () =>
                     <ul className='nav-menu-items'>
                         {/* Logged In user Link */}
                         {
-                            userInfo?.role === 'admin' ?<div>
+                            userInfo?.role === 'admin' ? <div>
                                 <li className='nav-text'>
                                     <Link to={`${url}/manage-orders`}>Manage Orders</Link>
                                 </li>
@@ -56,49 +56,49 @@ const Dashboard = () =>
                                 <li className='nav-text'>
                                     <Link to={`${url}/myOrder`}>My Orders</Link>
                                 </li>
-                                
-                                
+
+
                                 <li className='nav-text'>
                                     <Link to={`${url}/review`}>Review</Link>
                                 </li>
                                 <li className='nav-text'>
                                     <Link to={`${url}/payments`}>Payments</Link>
-                                </li> 
-                            </div>  
+                                </li>
+                            </div>
                         }
                     </ul>
                 </nav>
                 <div className='w-full'>
                     <Switch>
                         <Route exact path={`${path}/myOrder`}>
-                            <MyOrders/>
+                            <MyOrders />
                         </Route>
                         <Route exact path={`${path}`}>
-                            <DashboardHome/>
+                            <DashboardHome />
                         </Route>
                         <Route exact path={`${path}/add-product`}>
-                            <AddProduct/>
+                            <AddProduct />
                         </Route>
                         <Route exact path={`${path}/manage-orders`}>
-                            <ManageOrders/>
+                            <ManageOrders />
                         </Route>
                         <Route exact path={`${path}/manage-products`}>
-                            <ManageProducts/>
+                            <ManageProducts />
                         </Route>
                         <Route exact path={`${path}/review`}>
-                            <Review/>
+                            <Review />
                         </Route>
                         <Route exact path={`${path}/payments`}>
-                            <Payment/>
+                            <Payment />
                         </Route>
                         <Route exact path={`${path}/make-admin`}>
-                            <MakeAdmin/>
+                            <MakeAdmin />
                         </Route>
                     </Switch>
                 </div>
             </IconContext.Provider>
         </div>
-        
+
     );
 };
 
