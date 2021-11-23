@@ -17,8 +17,7 @@ import useFetchData from './Hooks/useFetchData';
 
 const App = () =>
 {
-  const { loading } = useFetchData();
-  console.log(loading);
+  const {loading} = useFetchData();
   return (
     <APIContextProvider>
       {
@@ -28,6 +27,7 @@ const App = () =>
             color="#00BFFF"
             height={100}
             width={100}
+            timeout={1000}
           />
         </div>:<BrowserRouter>
         <Header/>
