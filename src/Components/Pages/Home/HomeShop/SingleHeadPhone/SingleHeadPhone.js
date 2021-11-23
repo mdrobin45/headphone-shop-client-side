@@ -13,7 +13,7 @@ const SingleHeadPhone = ({ headPhone }) =>
     // Handle add to cart
     const handleAddToCart = () =>
     {
-        axios.post('http://localhost:5000/cart', {...headPhone,...email})
+        axios.post('https://headphone-shop-r.herokuapp.com/cart', {...headPhone,...email})
             .then(res =>
             {
                 if (res.data.insertedId) {
