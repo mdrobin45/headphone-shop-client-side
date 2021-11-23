@@ -1,6 +1,4 @@
 import React from 'react';
-import Loader from 'react-loader-spinner';
-import useAPI from '../../../Hooks/useAPI';
 import AverageHeadphone from './AverageHeadphone/AverageHeadphone';
 import HomeBanner from './HomeBanner/HomeBanner';
 import HomeShop from './HomeShop/HomeShop';
