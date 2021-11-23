@@ -50,9 +50,6 @@ const App = () =>
           <PrivetRoute exact path='/checkout/:id'>
             <Checkout/>
           </PrivetRoute>
-          <Route exact path='/cart'>
-             <Cart/>   
-          </Route>
           <Route exact path='/login'>
             <Login/>
           </Route>

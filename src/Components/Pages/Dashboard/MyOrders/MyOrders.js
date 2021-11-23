@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactStars from 'react-stars';
 import useAPI from '../../../../Hooks/useAPI';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert';
 import axios from 'axios';
 
 const MyOrders = () =>
@@ -19,7 +19,7 @@ const MyOrders = () =>
     // Cancel or delete order
     const cancelOrder = (id) =>
     {
-        Swal.fire({
+        swal({
             title: 'Do you want to delete this order?',
             showCancelButton: true,
             confirmButtonText: 'Delete',
@@ -33,7 +33,7 @@ const MyOrders = () =>
                             setUpdateOrder(updateOrder + 1);
                         }
                     });
-                Swal.fire('Order Deleted', '', 'success');
+                swal('Order Deleted', '', 'success');
             }
         });
     };

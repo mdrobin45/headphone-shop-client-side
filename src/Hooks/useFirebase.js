@@ -1,7 +1,7 @@
 import initializeFirebase from "../Firebasse/firebase.init";
-import { getAuth,signOut, createUserWithEmailAndPassword,onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signOut, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
+import swal from 'sweetalert';
 import axios from "axios";
 
 initializeFirebase();
@@ -21,7 +21,7 @@ const useFirebase = () =>
     const formControl = (e) =>
     {
         e.preventDefault();
-    }
+    };
     // First name handle
     const name = (e) =>
     {
@@ -40,38 +40,38 @@ const useFirebase = () =>
         setUserEmail.email = inputValue;
         setUserInfo(setUserEmail);
         setEmail(inputValue);
-    }
+    };
 
     // Get Password
     const getPassword = (e) =>
     {
         const inputValue = e.target.value;
         setPassword(inputValue);
-    }
+    };
 
     // Register with email && password
-    const registerWithPassword = (history,location) =>
+    const registerWithPassword = (history, location) =>
     {
         createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) =>
-        {
-            axios.post('https://headphone-shop-r.herokuapp.com/users', userInfo)
-            .then()
-            setUser(userCredential.user);
-            Swal.fire({
-                position: 'center center',
-                icon: 'success',
-                title: 'Registration Successful',
-                showConfirmButton: false,
-                timer: 1500
-              })
+            .then((userCredential) =>
+            {
+                axios.post('https://headphone-shop-r.herokuapp.com/users', userInfo)
+                    .then();
+                setUser(userCredential.user);
+                swal({
+                    position: 'center center',
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 history.push(location.state?.from || '/');
             }).catch(error =>
             {
                 const errorCode = error.code;
                 switch (errorCode) {
                     case 'auth/email-already-in-use':
-                        Swal.fire({
+                        swal({
                             position: 'center center',
                             icon: 'warning',
                             title: 'Account already exist',
@@ -80,7 +80,7 @@ const useFirebase = () =>
                         });
                         break;
                     case 'auth/weak-password':
-                        Swal.fire({
+                        swal({
                             position: 'center center',
                             icon: 'warning',
                             title: 'Weak Password',
@@ -89,7 +89,7 @@ const useFirebase = () =>
                         });
                         break;
                     case 'auth/invalid-email':
-                        Swal.fire({
+                        swal({
                             position: 'center center',
                             icon: 'warning',
                             title: 'Invalid Email',
@@ -104,29 +104,29 @@ const useFirebase = () =>
             {
                 setIsLoggedIn(false);
             });
-    }
+    };
 
     // Login with email && password
-    const loginWithPassword = (history,location) =>
+    const loginWithPassword = (history, location) =>
     {
         signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential =>
+            .then(userCredential =>
             {
                 setUser(userCredential.user);
-                Swal.fire({
+                swal({
                     position: 'center center',
                     icon: 'success',
                     title: 'Login Successful',
                     showConfirmButton: false,
                     timer: 1500
-                  })
-                history.push(location.state?.from || '/')
+                });
+                history.push(location.state?.from || '/');
             }).catch(error =>
             {
                 const errorCode = error.code;
                 switch (errorCode) {
                     case 'auth/wrong-password':
-                        Swal.fire({
+                        swal({
                             position: 'center center',
                             icon: 'warning',
                             title: 'Incorrect email or password',
@@ -135,7 +135,7 @@ const useFirebase = () =>
                         });
                         break;
                     case 'auth/user-not-found':
-                        Swal.fire({
+                        swal({
                             position: 'center center',
                             icon: 'warning',
                             title: 'Incorrect email or password',
@@ -148,29 +148,29 @@ const useFirebase = () =>
                 }
             }).finally(() =>
             {
-                setIsLoggedIn(false)
-            })
-    }
+                setIsLoggedIn(false);
+            });
+    };
 
     // Log Out
     const logOut = () =>
     {
         signOut(auth).then(() =>
         {
-            Swal.fire({
+            swal({
                 position: 'center center',
                 icon: 'success',
                 title: 'Log Out Successful',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            });
             setUser({});
         }).finally(() =>
         {
-            setIsLoggedIn(false)
-        })
-    }
-    
+            setIsLoggedIn(false);
+        });
+    };
+
 
     // Update user state
     useEffect(() =>
@@ -180,9 +180,9 @@ const useFirebase = () =>
             if (user) {
                 setUser(user);
             }
-            setIsLoggedIn(false)
-        })
-    },[auth])
+            setIsLoggedIn(false);
+        });
+    }, [auth]);
 
     // Return
     return {
@@ -197,6 +197,6 @@ const useFirebase = () =>
         user,
         getPassword,
         logOut
-    }
+    };
 };
 export default useFirebase;

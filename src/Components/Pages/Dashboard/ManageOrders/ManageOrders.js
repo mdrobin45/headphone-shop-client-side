@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert';
 import ReactStars from 'react-stars';
 
 const ManageOrders = () =>
@@ -19,7 +19,7 @@ const ManageOrders = () =>
     // Delete order
     const deleteOrder = (id) =>
     {
-        Swal.fire({
+        swal({
             title: 'Do you want to delete?',
             showCancelButton: true,
             confirmButtonText: 'Delete',
@@ -34,7 +34,7 @@ const ManageOrders = () =>
                             setUpdateOrder(updateOrder + 1);
                         }
                     });
-                Swal.fire('Order Deleted', '', 'success');
+                swal('Order Deleted', '', 'success');
             }
         });
     };
@@ -47,7 +47,7 @@ const ManageOrders = () =>
             .then(res =>
             {
                 if (res.status === 200) {
-                    Swal.fire({
+                    swal({
                         position: 'center center',
                         icon: 'success',
                         title: 'Order Approved',

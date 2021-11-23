@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert';
 
 const SingleProduct = ({ headPhone }) =>
 {
@@ -10,7 +10,7 @@ const SingleProduct = ({ headPhone }) =>
     // Delete Product
     const deleteProduct = (id) =>
     {
-        Swal.fire({
+        swal({
             title: 'Do you want to delete?',
             showCancelButton: true,
             confirmButtonText: 'Delete',
@@ -23,7 +23,7 @@ const SingleProduct = ({ headPhone }) =>
                     {
 
                     });
-                Swal.fire('Product Deleted', '', 'success');
+                swal('Product Deleted', '', 'success');
             }
         });
     };

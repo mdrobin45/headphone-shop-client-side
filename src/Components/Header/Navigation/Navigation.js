@@ -21,6 +21,7 @@ const Navigation = () =>
   const [open, setOpen] = useState(false)
   const { user, logOut } = useAPI().auth;
   const [singleUserInfo, setSingleUserInfo] = useState({});
+  const [cartItem, setCartItem] = useState([]);
 
 
   // Get Single User information
@@ -31,6 +32,14 @@ const Navigation = () =>
       .then(data => setSingleUserInfo(data));
   }, [user?.email])
 
+
+  // Get cart product details
+  useEffect(() =>
+  {
+    fetch(`http://localhost:5000/cart/${user?.email}`)
+      .then(res => res.json())
+      .then(data => setCartItem(data));
+  },[user?.email])
 
   return (  
     <div>
@@ -73,16 +82,19 @@ const Navigation = () =>
                   </div>
                 </div>
                 {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
-                    <button onClick={()=>setOpen(true)} className="group -m-2 p-2 flex items-center">
-                      <ShoppingBagIcon
-                        className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                        aria-hidden="true"
-                      />
-                      <span className="ml-2 text-sm font-medium text-white">2</span>
-                      <span className="sr-only">items in cart, view bag</span>
-                    </button>
-                  </div>
+                {
+                  user?.email?<div className="ml-4 flow-root lg:ml-6">
+                  <button onClick={()=>setOpen(true)} className="group -m-2 p-2 flex items-center">
+                    <ShoppingBagIcon
+                      className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-2 text-sm font-medium text-white">{cartItem.length}</span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </button>
+                </div>:''
+                }
+                
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   
                   {
