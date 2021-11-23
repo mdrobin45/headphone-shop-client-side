@@ -1,6 +1,6 @@
 import React,{Fragment, useEffect, useState} from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { MenuIcon, XIcon,ShoppingBagIcon } from '@heroicons/react/outline';
 import { Link, NavLink } from 'react-router-dom';
 import useAPI from '../../../Hooks/useAPI';
 import {FaUserCircle} from 'react-icons/fa'
@@ -69,6 +69,17 @@ const Navigation = () =>
                   </div>
                 </div>
               </div>
+              {/* Cart */}
+              <div className="ml-4 flow-root lg:ml-6">
+                  <Link to='/' className="group -m-2 p-2 flex items-center">
+                    <ShoppingBagIcon
+                      className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-2 text-sm font-medium text-white">2</span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </Link>
+                </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 
                 {
