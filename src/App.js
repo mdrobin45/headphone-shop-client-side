@@ -3,6 +3,7 @@ import Loader from 'react-loader-spinner';
 import { BrowserRouter,Route,Switch } from 'react-router-dom';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
+import Cart from './Components/Pages/Cart/Cart';
 import Checkout from './Components/Pages/Checkout/Checkout';
 import Contact from './Components/Pages/Contact/Contact';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
@@ -49,6 +50,9 @@ const App = () =>
           <PrivetRoute exact path='/checkout/:id'>
             <Checkout/>
           </PrivetRoute>
+          <Route exact path='/cart'>
+             <Cart/>   
+          </Route>
           <Route exact path='/login'>
             <Login/>
           </Route>
