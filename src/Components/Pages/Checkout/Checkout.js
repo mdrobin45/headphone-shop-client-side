@@ -22,7 +22,7 @@ const Checkout = () =>
     {
         const status = { status: 'Pending' };
         const { _id, ...rest } = data;
-        axios.post('https://headphone-shop-r.herokuapp.com//orders', { ...rest, ...headphone, ...status })
+        axios.post('http://localhost:5000//orders', { ...rest, ...headphone, ...status })
             .then(res =>
             {
                 if (res.data.insertedId) {
@@ -37,7 +37,7 @@ const Checkout = () =>
     // Get user info from database
     useEffect(() =>
     {
-        fetch(`https://headphone-shop-r.herokuapp.com//users/${user?.email}`)
+        fetch(`http://localhost:5000//users/${user?.email}`)
             .then(res => res.json())
             .then(data =>
             {
@@ -50,7 +50,7 @@ const Checkout = () =>
     // Get single headphone
     useEffect(() =>
     {
-        fetch(`https://headphone-shop-r.herokuapp.com//shop/${id}`)
+        fetch(`http://localhost:5000//shop/${id}`)
             .then(res => res.json())
             .then(data =>
             {

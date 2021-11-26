@@ -11,7 +11,7 @@ const MyOrders = () =>
     const [updateOrder, setUpdateOrder] = useState(0);
     useEffect(() =>
     {
-        fetch(`https://headphone-shop-r.herokuapp.com//orders/${user?.email}`)
+        fetch(`http://localhost:5000//orders/${user?.email}`)
             .then(res => res.json())
             .then(data => setOrders(data));
     }, [user.email, updateOrder]);
@@ -26,7 +26,7 @@ const MyOrders = () =>
         }).then((result) =>
         {
             if (result.isConfirmed) {
-                axios.delete(`https://headphone-shop-r.herokuapp.com//orders/${id}`)
+                axios.delete(`http://localhost:5000//orders/${id}`)
                     .then(res =>
                     {
                         if (res.status === 200) {

@@ -18,7 +18,7 @@ const SingleProduct = ({ headPhone }) =>
         {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                axios.delete(`https://headphone-shop-r.herokuapp.com//shop/${id}`)
+                axios.delete(`http://localhost:5000//shop/${id}`)
                     .then(res =>
                     {
 

@@ -7,32 +7,31 @@ const useFetchData = () =>
     const [testimonials, setTestimonials] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
     // Get HeadPhones
     useEffect(() =>
     {
-        fetch('https://headphone-shop-r.herokuapp.com/shop')
+        fetch('http://localhost:5000/shop')
             .then(res => res.json())
             .then(data =>
             {
-                setHeadphones(data)
+                setHeadphones(data);
                 setLoading(false);
             });
-            setLoading(true);
+        setLoading(true);
     }, []);
 
 
     // Testimonial
     useEffect(() =>
     {
-        fetch('https://headphone-shop-r.herokuapp.com/reviews')
+        fetch('http://localhost:5000/reviews')
             .then(res => res.json())
             .then(data =>
             {
-                setTestimonials(data)
+                setTestimonials(data);
                 setLoading(false);
             });
-            setLoading(true);
+        setLoading(true);
     }, []);
 
 

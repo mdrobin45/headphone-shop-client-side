@@ -5,6 +5,8 @@ import { Link, NavLink } from 'react-router-dom';
 import useAPI from '../../../Hooks/useAPI';
 import {FaUserCircle} from 'react-icons/fa'
 import Cart from '../../Pages/Cart/Cart';
+import SingleHeadPhone from '../../Pages/Home/HomeShop/SingleHeadPhone/SingleHeadPhone';
+import useHook from '../../../Hooks/useHook';
 
 
 const navigation = [
@@ -22,12 +24,17 @@ const Navigation = () =>
   const { user, logOut } = useAPI().auth;
   const [singleUserInfo, setSingleUserInfo] = useState({});
   const [cartItem, setCartItem] = useState([]);
+  // const { updateUI, setUpdateUI } = useHook();
+  
+ /*  useEffect(()=>{
+    console.log(setUpdateUI(updateUI + 1));
+  },[setUpdateUI,updateUI]) */
 
 
   // Get Single User information
   useEffect(() =>
   {
-    fetch(`https://headphone-shop-r.herokuapp.com/users/${user?.email}`)
+    fetch(`http://localhost:5000/users/${user?.email}`)
       .then(res => res.json())
       .then(data => setSingleUserInfo(data));
   }, [user?.email])
@@ -39,7 +46,7 @@ const Navigation = () =>
     fetch(`http://localhost:5000/cart/${user?.email}`)
       .then(res => res.json())
       .then(data => setCartItem(data));
-  },[user?.email])
+  }, [user?.email])
 
   return (  
     <div>
@@ -158,7 +165,9 @@ const Navigation = () =>
           </>
         )}
       </Disclosure>
-      <Cart open={open} setOpen={setOpen}/>
+      <Cart open={open}
+        setOpen={setOpen}
+      />
     </div>
   );
 };

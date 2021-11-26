@@ -5,20 +5,21 @@ import StarRatings from 'react-star-ratings';
 import useAPI from '../../../../../Hooks/useAPI';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useHook from '../../../../../Hooks/useHook';
 
 
 const SingleHeadPhone = ({ headPhone }) =>
 {
     const { user } = useAPI().auth;
     const { title, rating, img, _id, connection, price } = headPhone;
-    const email = { email: user?.email };
+    const { updateUI, setUpdateUI } = useHook();
 
 
     // Handle add to cart
     const handleAddToCart = () =>
     {
-        const { _id, ...rest } = headPhone;
-        axios.post('https://headphone-shop-r.herokuapp.com/cart', {...rest,...email})
+        const productDetails = {email: user?.email, title: title, rating: rating, img: img, productId: _id, connection: connection, price: price };
+        axios.post('http://localhost:5000/cart', productDetails)
             .then(res =>
             {
                 if (res.data.insertedId) {
@@ -28,7 +29,8 @@ const SingleHeadPhone = ({ headPhone }) =>
                         hideProgressBar: false,
                         closeOnClick: true,
                         progress: undefined,
-                        });
+                    });
+                    setUpdateUI(updateUI+1)
                 } else if (res.data.duplicate===true) {
                     toast.error('Oops! Product already exist', {
                         position: "top-center",
