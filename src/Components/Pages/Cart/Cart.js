@@ -3,17 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom';
 import useAPI from '../../../Hooks/useAPI';
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
-import useHook from '../../../Hooks/useHook';
 
 
 
-const Cart = ({open,setOpen}) =>
+const Cart = ({open,setOpen,updateUI,handleRemoveCartItem}) =>
 {
     const { user } = useAPI().auth;
     const [cartItems, setCartItems] = useState([]);
-    const {updateUI, setUpdateUI } = useHook();
 
     // Get cart items
     useEffect(() =>
@@ -23,28 +19,9 @@ const Cart = ({open,setOpen}) =>
             .then(data => setCartItems(data));
     }, [user?.email,updateUI])
     
-    // Remove product from cart list
-  const handleRemoveCartItem = (id) =>
-  {
-      axios.delete(`http://localhost:5000/cart/${id}`)
-          .then(res =>
-          {
-              if (res.data.deletedCount>0) {
-                  toast.success('Product successfully removed!', {
-                      position: "top-center",
-                      autoClose: 3000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      progress: undefined,
-                      });
-              }
-              setUpdateUI(updateUI + 1);
-          })
-    }
     
     return (
         <div>
-            <ToastContainer/>
             <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={setOpen}>
                 <div className="absolute inset-0 overflow-hidden">

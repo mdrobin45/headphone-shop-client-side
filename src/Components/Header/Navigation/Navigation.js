@@ -5,8 +5,8 @@ import { Link, NavLink } from 'react-router-dom';
 import useAPI from '../../../Hooks/useAPI';
 import {FaUserCircle} from 'react-icons/fa'
 import Cart from '../../Pages/Cart/Cart';
-import SingleHeadPhone from '../../Pages/Home/HomeShop/SingleHeadPhone/SingleHeadPhone';
-import useHook from '../../../Hooks/useHook';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 const navigation = [
@@ -24,12 +24,7 @@ const Navigation = () =>
   const { user, logOut } = useAPI().auth;
   const [singleUserInfo, setSingleUserInfo] = useState({});
   const [cartItem, setCartItem] = useState([]);
-  // const { updateUI, setUpdateUI } = useHook();
-  
- /*  useEffect(()=>{
-    console.log(setUpdateUI(updateUI + 1));
-  },[setUpdateUI,updateUI]) */
-
+  const [updateUI, setUpdateUI] = useState(0);
 
   // Get Single User information
   useEffect(() =>
@@ -46,10 +41,29 @@ const Navigation = () =>
     fetch(`http://localhost:5000/cart/${user?.email}`)
       .then(res => res.json())
       .then(data => setCartItem(data));
-  }, [user?.email])
+  }, [user?.email,updateUI])
 
+      // Remove product from cart list
+      const handleRemoveCartItem = (id) =>
+      {
+          axios.delete(`http://localhost:5000/cart/${id}`)
+              .then(res =>
+              {
+                  if (res.data.deletedCount>0) {
+                      toast.success('Product successfully removed!', {
+                          position: "top-center",
+                          autoClose: 3000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          progress: undefined,
+                          });
+                  }
+                  setUpdateUI(updateUI + 1);
+              })
+        }
   return (  
     <div>
+      <ToastContainer/>
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
@@ -165,8 +179,11 @@ const Navigation = () =>
           </>
         )}
       </Disclosure>
-      <Cart open={open}
+      <Cart
+        open={open}
         setOpen={setOpen}
+        handleRemoveCartItem={handleRemoveCartItem}
+        updateUI={updateUI}
       />
     </div>
   );
