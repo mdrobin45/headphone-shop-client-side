@@ -18,8 +18,8 @@ const SingleHeadPhone = ({ headPhone }) =>
     // Handle add to cart
     const handleAddToCart = () =>
     {
-        const productDetails = {email: user?.email, title: title, rating: rating, img: img, productId: _id, connection: connection, price: price };
-        axios.post('http://localhost:5000/cart', productDetails)
+        const productDetails = { email: user?.email, title: title, rating: rating, img: img, productId: _id, connection: connection, price: price };
+        axios.post('https://headphone-shop-r.herokuapp.com/cart', productDetails)
             .then(res =>
             {
                 if (res.data.insertedId) {
@@ -30,18 +30,18 @@ const SingleHeadPhone = ({ headPhone }) =>
                         closeOnClick: true,
                         progress: undefined,
                     });
-                    setUpdateUI(updateUI+1)
-                } else if (res.data.duplicate===true) {
+                    setUpdateUI(updateUI + 1);
+                } else if (res.data.duplicate === true) {
                     toast.error('Oops! Product already exist', {
                         position: "top-center",
                         autoClose: 3000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         progress: undefined,
-                        });
+                    });
                 }
-            })
-    }
+            });
+    };
     return (
         <div className='shadow border rounded text-center p-3'>
             <img className='m-auto' src={img} alt="Product" />
@@ -57,7 +57,7 @@ const SingleHeadPhone = ({ headPhone }) =>
             <h3 className='font-primary text-blue-800 pt-2 text-xl'>${price}</h3>
             <Link className='bg-orange py-2 block mt-3.5 rounded text-white text-lg font-primary' to={`checkout/${_id}`}>Buy Now</Link>
             <button onClick={handleAddToCart} className='bg-gray-700 py-2 w-full mt-3.5 rounded text-white text-lg font-primary'>Add To Cart</button>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

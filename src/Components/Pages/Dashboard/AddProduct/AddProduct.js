@@ -7,7 +7,7 @@ const AddProduct = () =>
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) =>
     {
-        axios.post('http://localhost:5000//shop', data)
+        axios.post('https://headphone-shop-r.herokuapp.com//shop', data)
             .then(res =>
             {
                 if (res.status === 200) {

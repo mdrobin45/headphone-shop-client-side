@@ -24,7 +24,7 @@ const Dashboard = () =>
     // Get user info from database
     useEffect(() =>
     {
-        fetch(`http://localhost:5000//users/${user?.email}`)
+        fetch(`https://headphone-shop-r.herokuapp.com//users/${user?.email}`)
             .then(res => res.json())
             .then(data => setUserInfo(data));
     }, []);

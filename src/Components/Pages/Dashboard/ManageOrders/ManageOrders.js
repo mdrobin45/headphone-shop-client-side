@@ -9,7 +9,7 @@ const ManageOrders = () =>
     const [updateOrder, setUpdateOrder] = useState(0);
     useEffect(() =>
     {
-        fetch('http://localhost:5000//orders')
+        fetch('https://headphone-shop-r.herokuapp.com//orders')
             .then(res => res.json())
             .then(data => setOrders(data));
     }, [updateOrder]);
@@ -27,7 +27,7 @@ const ManageOrders = () =>
         {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000//orders/${id}`)
+                axios.delete(`https://headphone-shop-r.herokuapp.com//orders/${id}`)
                     .then(res =>
                     {
                         if (res.status === 200) {
@@ -43,7 +43,7 @@ const ManageOrders = () =>
     // Approve order
     const approveOrder = (id) =>
     {
-        axios.put(`http://localhost:5000//orders/${id}`)
+        axios.put(`https://headphone-shop-r.herokuapp.com//orders/${id}`)
             .then(res =>
             {
                 if (res.status === 200) {

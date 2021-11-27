@@ -14,7 +14,7 @@ const Cart = ({open,setOpen,updateUI,handleRemoveCartItem}) =>
     // Get cart items
     useEffect(() =>
     {
-        fetch(`http://localhost:5000/cart/${user?.email}`)
+        fetch(`https://headphone-shop-r.herokuapp.com/cart/${user?.email}`)
             .then(res => res.json())
             .then(data => setCartItems(data));
     }, [user?.email,updateUI])
@@ -85,10 +85,10 @@ const Cart = ({open,setOpen,updateUI,handleRemoveCartItem}) =>
                                             </h3>
                                             <p className="ml-4">{product?.price}</p>
                                             </div>
-                                            <p className="mt-1 text-sm text-gray-500">{product?.color}</p>
+                                            <p className="mt-1 text-sm text-gray-500">{product?.connection.toUpperCase()}</p>
                                         </div>
                                         <div className="flex-1 flex items-end justify-between text-sm">
-                                            <p className="text-gray-500">Qty 1</p>
+                                            <p className="text-gray-500">Quantity: 1</p>
         
                                             <div className="flex">
                                             <button onClick={()=>handleRemoveCartItem(product?._id)} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -121,13 +121,13 @@ const Cart = ({open,setOpen,updateUI,handleRemoveCartItem}) =>
                             <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
                                 <p>
                                 or{' '}
-                                <button
-                                    type="button"
+                                <Link
+                                    to='/shop'
                                     className="text-indigo-600 font-medium hover:text-indigo-500"
                                     onClick={() => setOpen(false)}
                                 >
                                     Continue Shopping<span aria-hidden="true"> &rarr;</span>
-                                </button>
+                                </Link>
                                 </p>
                             </div>
                             </div>

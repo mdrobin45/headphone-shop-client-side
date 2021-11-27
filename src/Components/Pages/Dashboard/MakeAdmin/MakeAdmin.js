@@ -7,7 +7,7 @@ const MakeAdmin = () =>
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) =>
     {
-        axios.put(`http://localhost:5000//users/${data?.email}`)
+        axios.put(`https://headphone-shop-r.herokuapp.com//users/${data?.email}`)
             .then(res =>
             {
                 if (res.status === 200) {

@@ -10,7 +10,7 @@ const useFetchData = () =>
     // Get HeadPhones
     useEffect(() =>
     {
-        fetch('http://localhost:5000/shop')
+        fetch('https://headphone-shop-r.herokuapp.com/shop')
             .then(res => res.json())
             .then(data =>
             {
@@ -24,7 +24,7 @@ const useFetchData = () =>
     // Testimonial
     useEffect(() =>
     {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://headphone-shop-r.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data =>
             {
